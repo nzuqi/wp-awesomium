@@ -28,3 +28,11 @@ function disable_specific_plugin_updates($value) {
     return $value;
 }
 add_filter('site_transient_update_plugins', 'disable_specific_plugin_updates');
+
+function hide_plugin_submenus() {
+    if (!is_admin()) return;
+
+    remove_submenu_page('learnpress', 'learn-press-addons');
+    // remove_submenu_page('learnpress', 'learn-press-addons');
+}
+add_action('admin_menu', 'hide_plugin_submenus', 999);
